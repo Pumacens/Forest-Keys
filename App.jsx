@@ -3,9 +3,10 @@ import React from "react";
 import {
   StyleSheet,
   StatusBar,
-  Dimensions,
   View
 } from "react-native";
+
+
 import WelcomeScreen from './app/screens/WelcomeScreen'
 
 
