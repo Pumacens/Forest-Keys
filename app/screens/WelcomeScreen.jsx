@@ -12,7 +12,7 @@ import { useFonts } from "expo-font";
 import { LinearGradient } from "expo-linear-gradient";
 
 import TopMenu from "../components/topMenu";
-import MenuClaves from "../components/menuClaves";
+import keysDropdown from "../components/keysDropdown";
 
 const { width, height } = Dimensions.get("screen");
 
@@ -37,13 +37,7 @@ function WelcomeScreen() {
         source={require("../assets/portada2-op.png")}
       >
       <LinearGradient
-        // Background Linear Gradient
-        colors={["rgba(0,0,0,0.94)", "rgba(0,0,0,0.30)", "rgba(0,0,0,1)"]}
-        // style={{
-        //   flex: 1,
-        //   width: width,
-        //   height: height,
-        // }}
+        colors={["rgba(0,0,0,0.85)", "rgba(0,0,0,0.20)", "rgba(0,0,0,1)"]}
         locations={[0.5, 0.8, 1]}
       >
         <View style={styles.hero}>
@@ -60,7 +54,7 @@ function WelcomeScreen() {
             ForestKeys
           </Text>
           <Text style={[styles.subTitulo]}>Seleccione la clave a utilizar</Text>
-          <MenuClaves styles={styles.menuClaves} />
+          <keysDropdown styles={styles.menuClaves} />
         </View>
 
         <View style={styles.seccionPortadaBotones}>

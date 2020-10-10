@@ -6,18 +6,19 @@ import {
   View
 } from "react-native";
 
-
-import WelcomeScreen from './app/screens/WelcomeScreen'
-
+import colors from './app/config/colors'
+import WelcomeScreen from './app/screens/welcomeScreen'
+import SpeciesListScreen from './app/screens/speciesListScreen';
 
 export default function App() {
   const handleTextPress = () => {};
 
   return (
     <>
-      <StatusBar barStyle="light-content" backgroundColor="#023829" />
+      <StatusBar barStyle="light-content" backgroundColor={colors.statusBarGreen} />
       <View style={styles.container}>
-        <WelcomeScreen />
+        {/* <WelcomeScreen /> */}
+        <SpeciesListScreen/>
       </View>
     </> 
   );
