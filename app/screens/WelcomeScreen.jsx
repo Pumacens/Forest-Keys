@@ -8,54 +8,91 @@ import {
   TouchableNativeFeedback,
   Dimensions,
 } from "react-native";
+import { useFonts } from "expo-font";
+import { LinearGradient } from "expo-linear-gradient";
 
-import TopMenu from '../components/topMenu';
-import MenuClaves from '../components/menuClaves'
+import TopMenu from "../components/topMenu";
+import MenuClaves from "../components/menuClaves";
 
 const { width, height } = Dimensions.get("screen");
 
 function WelcomeScreen() {
-
   const handleButtonPress = () => {
-    console.log('boton oprimido');
+    console.log("boton oprimido");
+  };
+
+  let customFont = "Roboto";
+
+  let [fontsLoaded] = useFonts({
+    SedanSC: require("../assets/fonts/SedanSC-Regular.ttf"),
+  });
+
+  if (fontsLoaded) {
+    customFont = "SedanSC";
   }
 
   return (
     <ImageBackground
-      style={styles.portada}
-      source={require("../assets/portada2-op.png")}
-    >
-      <View style={styles.hero}>
-        <TopMenu style={styles.botonMenuSuperior}/>
-        <Text style={[styles.texto, styles.titulo]}>ForestKeys</Text>
-        <Text style={[styles.subTitulo]}>Seleccione la clave a utilizar</Text>
-        <MenuClaves styles={styles.menuClaves}/>
-      </View>
+        style={styles.portada}
+        source={require("../assets/portada2-op.png")}
+      >
+      <LinearGradient
+        // Background Linear Gradient
+        colors={["rgba(0,0,0,0.94)", "rgba(0,0,0,0.30)", "rgba(0,0,0,1)"]}
+        // style={{
+        //   flex: 1,
+        //   width: width,
+        //   height: height,
+        // }}
+        locations={[0.5, 0.8, 1]}
+      >
+        <View style={styles.hero}>
+          <TopMenu style={styles.botonMenuSuperior} />
+          <Text
+            style={[
+              styles.texto,
+              styles.titulo,
+              {
+                fontFamily: customFont,
+              },
+            ]}
+          >
+            ForestKeys
+          </Text>
+          <Text style={[styles.subTitulo]}>Seleccione la clave a utilizar</Text>
+          <MenuClaves styles={styles.menuClaves} />
+        </View>
 
-      <View style={styles.seccionPortadaBotones}>
-        <TouchableNativeFeedback onPress={handleButtonPress} title="IDENTIFICAR PLANTA">
-          <View style={styles.botonPortada}>
-            <Text style={styles.textoBoton}>IDENTIFICAR PLANTA</Text>
-          </View>
-        </TouchableNativeFeedback>
-        <TouchableNativeFeedback title="LISTA DE ESPECIES DE LA CLAVE">
-          <View style={styles.botonPortada}>
-            <Text style={styles.textoBoton}>LISTA DE ESPECIES DE LA CLAVE</Text>
-          </View>
-        </TouchableNativeFeedback>
-        <TouchableNativeFeedback title="IMPORTAR CLAVE">
-          <View style={styles.botonPortada}>
-            <FontAwesome5
-              size={20}
-              style={styles.iconImportarClave}
-              name="file-import"
-            />
-            <Text style={[styles.textoBoton, { right: 7 }]}>
-              IMPORTAR CLAVE
-            </Text>
-          </View>
-        </TouchableNativeFeedback>
-      </View>
+        <View style={styles.seccionPortadaBotones}>
+          <TouchableNativeFeedback
+            onPress={handleButtonPress}
+            title="IDENTIFICAR PLANTA"
+          >
+            <View style={styles.botonPortada}>
+              <Text style={styles.textoBoton}>IDENTIFICAR PLANTA</Text>
+            </View>
+          </TouchableNativeFeedback>
+          <TouchableNativeFeedback title="LISTA DE ESPECIES DE LA CLAVE">
+            <View style={styles.botonPortada}>
+              <Text style={styles.textoBoton}>
+                LISTA DE ESPECIES DE LA CLAVE
+              </Text>
+            </View>
+          </TouchableNativeFeedback>
+          <TouchableNativeFeedback title="IMPORTAR CLAVE">
+            <View style={styles.botonPortada}>
+              <FontAwesome5
+                size={20}
+                style={styles.iconImportarClave}
+                name="file-import"
+              />
+              <Text style={[styles.textoBoton, { right: 7 }]}>
+                IMPORTAR CLAVE
+              </Text>
+            </View>
+          </TouchableNativeFeedback>
+        </View>
+      </LinearGradient>
     </ImageBackground>
   );
 }
@@ -63,6 +100,7 @@ function WelcomeScreen() {
 const styles = StyleSheet.create({
   portada: {
     width: width,
+    zIndex: 99
   },
 
   botonMenuSuperior: {
@@ -72,26 +110,25 @@ const styles = StyleSheet.create({
     bottom: 8,
   },
 
-  test:{
-    width: '100%',
+  test: {
+    width: "100%",
   },
 
   hero: {
     height: "50%",
     justifyContent: "center",
-    backgroundColor: "#000000BB",
     alignItems: "center",
-    paddingBottom: 15,
   },
 
   titulo: {
-    fontSize: 40,
+    fontSize: 54,
     color: "white",
   },
-  
+
   subTitulo: {
     color: "white",
-    marginBottom: 45,
+    marginBottom: 20,
+    fontSize: 18,
   },
 
   menuClaves: {
@@ -111,7 +148,6 @@ const styles = StyleSheet.create({
     height: "50%",
     alignItems: "center",
     justifyContent: "space-around",
-    backgroundColor: "#00000066",
     paddingVertical: 30,
   },
 
@@ -130,7 +166,8 @@ const styles = StyleSheet.create({
   textoBoton: {
     color: "white",
     bottom: 11,
-    fontFamily: 'Roboto'
+    fontFamily: "Roboto",
+    fontWeight: "bold"
   },
 
   iconImportarClave: {

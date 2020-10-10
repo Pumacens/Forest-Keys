@@ -7,7 +7,7 @@ const MenuClaves = (props) => {
   return ( 
     <View style={props.styles}>
       <Picker
-        mode="dropdown"
+        mode="dialog"
         style={{ height: 50, width: "100%", color: "white" }}
       >
         <Picker.Item label="Lista de claves..." value="..." />
