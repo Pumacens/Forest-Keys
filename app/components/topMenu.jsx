@@ -3,9 +3,8 @@ import { View } from "react-native";
 import { Entypo } from "@expo/vector-icons";
 
 const TopMenu = (props) => {
-    console.log(props.style)
     return ( 
-      <Entypo style={props.style} name="menu" size={25} />
+      <Entypo style={props.style} name="menu" size={30} />
     );
 }
  

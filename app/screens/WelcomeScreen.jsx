@@ -1,5 +1,4 @@
 import React from "react";
-import { Picker } from "@react-native-community/picker";
 import { FontAwesome5 } from "@expo/vector-icons";
 import {
   StyleSheet,
@@ -11,10 +10,16 @@ import {
 } from "react-native";
 
 import TopMenu from '../components/topMenu';
+import MenuClaves from '../components/menuClaves'
 
 const { width, height } = Dimensions.get("screen");
 
 function WelcomeScreen() {
+
+  const handleButtonPress = () => {
+    console.log('boton oprimido');
+  }
+
   return (
     <ImageBackground
       style={styles.portada}
@@ -24,22 +29,11 @@ function WelcomeScreen() {
         <TopMenu style={styles.botonMenuSuperior}/>
         <Text style={[styles.texto, styles.titulo]}>ForestKeys</Text>
         <Text style={[styles.subTitulo]}>Seleccione la clave a utilizar</Text>
-        <View style={styles.dropdown}>
-          <Picker
-            mode="dropdown"
-            style={{ height: 50, width: "100%", color: "white" }}
-          >
-            <Picker.Item label="Lista de claves..." value="..." />
-            <Picker.Item label="a" value="..." />
-            <Picker.Item label="b" value="..." />
-            <Picker.Item label="c" value="..." />
-          </Picker>
-          <FontAwesome5 style={[styles.iconDropClaves]} name="sort-down" />
-        </View>
+        <MenuClaves styles={styles.menuClaves}/>
       </View>
 
       <View style={styles.seccionPortadaBotones}>
-        <TouchableNativeFeedback title="IDENTIFICAR PLANTA">
+        <TouchableNativeFeedback onPress={handleButtonPress} title="IDENTIFICAR PLANTA">
           <View style={styles.botonPortada}>
             <Text style={styles.textoBoton}>IDENTIFICAR PLANTA</Text>
           </View>
@@ -71,6 +65,17 @@ const styles = StyleSheet.create({
     width: width,
   },
 
+  botonMenuSuperior: {
+    color: "white",
+    alignSelf: "flex-end",
+    right: 10,
+    bottom: 8,
+  },
+
+  test:{
+    width: '100%',
+  },
+
   hero: {
     height: "50%",
     justifyContent: "center",
@@ -79,32 +84,17 @@ const styles = StyleSheet.create({
     paddingBottom: 15,
   },
 
-  botonMenuSuperior: {
-    color: "white",
-    alignSelf: "flex-end",
-    right: 10,
-    bottom: 8,
-  },
-
   titulo: {
     fontSize: 40,
     color: "white",
   },
-
-  seccionPortadaBotones: {
-    height: "50%",
-    alignItems: "center",
-    justifyContent: "space-around",
-    backgroundColor: "#00000066",
-    paddingVertical: 30,
-  },
-
+  
   subTitulo: {
     color: "white",
     marginBottom: 45,
   },
 
-  dropdown: {
+  menuClaves: {
     borderBottomColor: "#FFF",
     borderBottomWidth: 2,
     marginTop: 25,
@@ -117,11 +107,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 7,
   },
 
-  iconDropClaves: {
-    color: "white",
-    position: "absolute",
-    left: "94%",
-    top: "30%",
+  seccionPortadaBotones: {
+    height: "50%",
+    alignItems: "center",
+    justifyContent: "space-around",
+    backgroundColor: "#00000066",
+    paddingVertical: 30,
   },
 
   botonPortada: {
@@ -139,6 +130,7 @@ const styles = StyleSheet.create({
   textoBoton: {
     color: "white",
     bottom: 11,
+    fontFamily: 'Roboto'
   },
 
   iconImportarClave: {
