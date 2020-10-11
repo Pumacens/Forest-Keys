@@ -8,16 +8,18 @@ import {
 } from "react-native";
 
 import colors from "../config/colors";
+import data from '../config/deviceData'
 
 const SpeciesGridItem = (props) => {
   return (
     <TouchableHighlight
       onPress={() => props.onPress(props.itemData)}
-      underlayColor={colors.superiorBandGreen}
+      underlayColor={colors.itemTapColor}
     >
       <View style={styles.listItem}>
-        <View styles={styles.listText}>
-          <Text style={styles.title}>{props.itemData.name} - {props.itemData.nombreComun}</Text>
+        <View style={styles.titleBar}>
+          <Text style={styles.title}>{props.itemData.name}</Text>
+          <Text style={styles.subTitle}>{props.itemData.nombreComun}</Text>
         </View>
         <Image
           style={styles.image}
@@ -32,24 +34,30 @@ const SpeciesGridItem = (props) => {
 
 const styles = StyleSheet.create({
   listItem: {
-    width: 300,
-    height: 300
+    width: data.width / 2,
+    height: 250,
+    padding: 5,
   },
 
   image: {
-    height: 60,
-    width: 60,
+    flex:1
   },
 
   titleBar: {
     backgroundColor: colors.superiorBandGreen,
-    height: '100%',
-    width: '100%'
+    alignItems: 'center',
+    paddingVertical: 4
+
   },
 
   title: {
     color: "white",
-    fontSize: 20,
+    fontSize: 16,
+  },
+
+  subTitle: {
+    color: "#C4C4C4",
+    fontSize: 13,
   },
 
 });

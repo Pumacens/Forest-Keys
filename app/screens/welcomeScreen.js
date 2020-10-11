@@ -13,8 +13,7 @@ import { LinearGradient } from "expo-linear-gradient";
 
 import TopMenu from "../components/topMenu";
 import KeysDropdown from "../components/keysDropdown";
-
-const { width, height } = Dimensions.get("screen");
+import data from '../config/deviceData'
 
 function WelcomeScreen() {
   const handleButtonPress = () => {
@@ -93,7 +92,7 @@ function WelcomeScreen() {
 
 const styles = StyleSheet.create({
   portada: {
-    width: width,
+    width: data.width,
     zIndex: 99
   },
 

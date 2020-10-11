@@ -17,8 +17,8 @@ export default function App() {
     <>
       <StatusBar barStyle="light-content" backgroundColor={colors.statusBarGreen} />
       <View style={styles.container}>
-        {/* <WelcomeScreen /> */}
-        <SpeciesListScreen/>
+        <WelcomeScreen />
+        {/* <SpeciesListScreen/> */}
       </View>
     </> 
   );

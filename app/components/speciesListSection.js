@@ -13,7 +13,7 @@ const SpeciesListSection = (props) => {
         renderItem={({ item }) => {
           return <SpeciesListItem onPress={props.onPress} key={item.ID} itemData={item} />;
         }}
-        ItemSeparatorComponent={ListItemSeparator}
+        // ItemSeparatorComponent={ListItemSeparator}
         persistentScrollbar={true}
       />
     </View>

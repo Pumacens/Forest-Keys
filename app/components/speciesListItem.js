@@ -7,12 +7,14 @@ import {
   TouchableHighlight,
 } from "react-native";
 
-import colors from '../config/colors'
+import colors from "../config/colors";
 
 const SpeciesListItem = (props) => {
-
   return (
-    <TouchableHighlight onPress={() => props.onPress(props.itemData)} underlayColor={colors.superiorBandGreen}>
+    <TouchableHighlight
+      onPress={() => props.onPress(props.itemData)}
+      underlayColor={colors.itemTapColor}
+    >
       <View style={styles.listItem}>
         <Image
           style={styles.image}
@@ -32,14 +34,18 @@ const SpeciesListItem = (props) => {
 const styles = StyleSheet.create({
   listItem: {
     flexDirection: "row",
-    width: "90%",
-    padding: 15,
+    // width: "100%",
+    margin: 10,
+    backgroundColor: colors.superiorBandGreen,
+    borderRadius: 5,
   },
 
   image: {
-    height: 60,
-    width: 60,
+    height: 75,
+    width: 80,
     marginRight: 15,
+    borderTopLeftRadius: 5,
+    borderBottomLeftRadius: 5,
   },
 
   listText: {
@@ -48,12 +54,13 @@ const styles = StyleSheet.create({
 
   title: {
     color: "white",
-    fontSize: 20,
+    fontSize: 18,
+    marginTop: 10,
   },
 
   subTitle: {
     color: "#C4C4C4",
-    fontSize: 16,
+    fontSize: 14,
   },
 });
 

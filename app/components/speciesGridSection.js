@@ -13,7 +13,6 @@ const SpeciesGridSection = (props) => {
         renderItem={({ item }) => {
           return <SpeciesGridItem onPress={props.onPress} key={item.ID} itemData={item} />;
         }}
-        ItemSeparatorComponent={ListItemSeparator}
         persistentScrollbar={true}
         numColumns={2}
       />

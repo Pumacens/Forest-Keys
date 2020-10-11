@@ -28,8 +28,8 @@ const SpeciesListView = (props) => {
           <FontAwesome5 name='grip-vertical' size={25} style={styles.iconoLista}/>
         </View>
 
-        {/* <SpeciesListSection  onPress={handleItemPress} list={data} style={styles.flatList} /> */}
-        <SpeciesGridSection  onPress={handleItemPress} list={data} style={styles.flatList} />
+        <SpeciesListSection  onPress={handleItemPress} list={data} style={styles.flatList} />
+        {/* <SpeciesGridSection  onPress={handleItemPress} list={data} style={styles.flatList} /> */}
 
       </LinearGradient>
     </View>
@@ -54,9 +54,6 @@ const styles = StyleSheet.create({
     marginLeft: 16
   },
 
-  flatList: {
-
-  }
 });
 
 export default SpeciesListView;
