@@ -1,6 +1,6 @@
 
 const colors = {
-    superiorBandGreen: '#0B5B1E',
+    superiorBandGreen: '#034A23',
     // superiorBandGreen: '#0F541F',
     // superiorBandGreen: '#062C0C',
 

@@ -116,11 +116,12 @@ const styles = StyleSheet.create({
   titulo: {
     fontSize: 54,
     color: "white",
+    marginBottom: -12
   },
 
   subTitulo: {
     color: "white",
-    marginBottom: 20,
+    marginBottom: 45,
     fontSize: 18,
   },
 
@@ -141,7 +142,8 @@ const styles = StyleSheet.create({
     height: "50%",
     alignItems: "center",
     justifyContent: "space-around",
-    paddingVertical: 30,
+    paddingVertical: 35,
+    marginTop: 5
   },
 
   botonPortada: {

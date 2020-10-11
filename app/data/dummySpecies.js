@@ -44,6 +44,56 @@ const data = [
         nombreComun: 'Saman',
         ID: 9,
     },
+    {
+        name: 'Albizia saman',
+        nombreComun: 'Saman',
+        ID: 10,
+    },
+    {
+        name: 'Albizia saman',
+        nombreComun: 'Saman',
+        ID: 11,
+    },
+    {
+        name: 'Albizia saman',
+        nombreComun: 'Saman',
+        ID: 12,
+    },
+    {
+        name: 'Albizia saman',
+        nombreComun: 'Saman',
+        ID: 13,
+    },
+    {
+        name: 'Albizia saman',
+        nombreComun: 'Saman',
+        ID: 14,
+    },
+    {
+        name: 'Albizia saman',
+        nombreComun: 'Saman',
+        ID: 15,
+    },
+    {
+        name: 'Albizia saman',
+        nombreComun: 'Saman',
+        ID: 16,
+    },
+    {
+        name: 'Albizia saman',
+        nombreComun: 'Saman',
+        ID: 17,
+    },
+    {
+        name: 'Albizia saman',
+        nombreComun: 'Saman',
+        ID: 18,
+    },
+    {
+        name: 'Albizia saman',
+        nombreComun: 'Saman',
+        ID: 19,
+    },
 ]
 
 

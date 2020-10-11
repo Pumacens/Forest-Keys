@@ -5,13 +5,14 @@ import SpeciesListItem from "./speciesListItem";
 import ListItemSeparator from './listItemSeparator'
 
 const SpeciesListSection = (props) => {
+  
   return (
     <View style={styles.section}>
       <FlatList
-        data={props.list}
+        data={props.route.params.data}
         keyExtractor={(item) => item.ID.toString()}
         renderItem={({ item }) => {
-          return <SpeciesListItem onPress={props.onPress} key={item.ID} itemData={item} />;
+          return <SpeciesListItem onPress={props.route.params.onPress} key={item.ID} itemData={item} />;
         }}
         // ItemSeparatorComponent={ListItemSeparator}
         persistentScrollbar={true}

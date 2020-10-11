@@ -11,14 +11,13 @@ import WelcomeScreen from './app/screens/welcomeScreen'
 import SpeciesListScreen from './app/screens/speciesListScreen';
 
 export default function App() {
-  const handleTextPress = () => {};
 
   return (
     <>
       <StatusBar barStyle="light-content" backgroundColor={colors.statusBarGreen} />
       <View style={styles.container}>
-        <WelcomeScreen />
-        {/* <SpeciesListScreen/> */}
+        {/* <WelcomeScreen /> */}
+        <SpeciesListScreen/>
       </View>
     </> 
   );

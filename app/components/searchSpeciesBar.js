@@ -15,16 +15,16 @@ const styles = StyleSheet.create({
   barra:{
     borderRadius: 5,
     height: 45,
-    width: '80%', 
+    width: '93%', 
     backgroundColor: 'white',
     flexDirection: 'row',
-    justifyContent:'center',
-    alignItems: 'center'
+    justifyContent:'flex-start',
+    alignItems: 'center',
   },
 
   iconoBusqueda: {
+    marginHorizontal: 10,
     color: '#A9A9A9',
-    marginRight: 7
   },
 
   texto: {

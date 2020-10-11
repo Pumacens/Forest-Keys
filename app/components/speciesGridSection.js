@@ -8,10 +8,10 @@ const SpeciesGridSection = (props) => {
   return (
     <View style={styles.section}>
       <FlatList
-        data={props.list}
+        data={props.route.params.data}
         keyExtractor={(item) => item.ID.toString()}
         renderItem={({ item }) => {
-          return <SpeciesGridItem onPress={props.onPress} key={item.ID} itemData={item} />;
+          return <SpeciesGridItem onPress={props.route.params.onPress} key={item.ID} itemData={item} />;
         }}
         persistentScrollbar={true}
         numColumns={2}

@@ -7,7 +7,6 @@ import TopMenu from "./topMenu";
 
 const SuperiorBand = (props) => {
   const backToIndex = () => {
-    console.log("Welcome");
   };
 
   return (
