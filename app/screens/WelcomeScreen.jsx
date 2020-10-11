@@ -12,7 +12,7 @@ import { useFonts } from "expo-font";
 import { LinearGradient } from "expo-linear-gradient";
 
 import TopMenu from "../components/topMenu";
-import keysDropdown from "../components/keysDropdown";
+import KeysDropdown from "../components/keysDropdown";
 
 const { width, height } = Dimensions.get("screen");
 
@@ -54,7 +54,7 @@ function WelcomeScreen() {
             ForestKeys
           </Text>
           <Text style={[styles.subTitulo]}>Seleccione la clave a utilizar</Text>
-          <keysDropdown styles={styles.menuClaves} />
+          <KeysDropdown styles={styles.menuClaves} />
         </View>
 
         <View style={styles.seccionPortadaBotones}>

@@ -5,8 +5,8 @@ import { FontAwesome5 } from "@expo/vector-icons"
 
 import SuperiorBand from "../components/superiorBand";
 import SearchSpeciesBar from '../components/searchSpeciesBar';
-import SpeciesListSection from '../components/speciesListSectionSection.jsx';
-import SpeciesGridSection from '../components/speciesGridSection.jsx';
+import SpeciesListSection from '../components/speciesListSectionSection';
+import SpeciesGridSection from '../components/speciesGridSection';
 
 const SpeciesListView = (props) => {
   return (
@@ -21,9 +21,6 @@ const SpeciesListView = (props) => {
           <SearchSpeciesBar />
           <FontAwesome5 name='grip-vertical' size={25} style={styles.iconoLista}/>
         </View>
-
-
-
       </LinearGradient>
     </View>
   );

@@ -3,7 +3,7 @@ import { View, StyleSheet } from 'react-native'
 import { Picker } from "@react-native-community/picker";
 import { FontAwesome5 } from "@expo/vector-icons";
 
-const MenuClaves = (props) => {
+const KeysDropdown = (props) => {
   return ( 
     <View style={props.styles}>
       <Picker
@@ -29,7 +29,6 @@ const styles = StyleSheet.create({
     top: "30%",
   },
 
-  
 })
  
-export default MenuClaves;
+export default KeysDropdown;
