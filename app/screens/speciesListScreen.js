@@ -5,10 +5,16 @@ import { FontAwesome5 } from "@expo/vector-icons"
 
 import SuperiorBand from "../components/superiorBand";
 import SearchSpeciesBar from '../components/searchSpeciesBar';
-import SpeciesListSection from '../components/speciesListSectionSection';
+import SpeciesListSection from '../components/speciesListSection';
 import SpeciesGridSection from '../components/speciesGridSection';
+import data from '../data/dummySpecies'
 
 const SpeciesListView = (props) => {
+
+  const handleItemPress = (specie) => {
+    console.log("pressed, ", specie);
+  };
+
   return (
     <View style={{ width: "100%", height: "100%" }}>
       <SuperiorBand title="Especies" />
@@ -18,9 +24,13 @@ const SpeciesListView = (props) => {
         style={styles.fondo}
       >
         <View style={styles.topSection}>
-          <SearchSpeciesBar />
+          <SearchSpeciesBar/>
           <FontAwesome5 name='grip-vertical' size={25} style={styles.iconoLista}/>
         </View>
+
+        {/* <SpeciesListSection  onPress={handleItemPress} list={data} style={styles.flatList} /> */}
+        <SpeciesGridSection  onPress={handleItemPress} list={data} style={styles.flatList} />
+
       </LinearGradient>
     </View>
   );
@@ -28,20 +38,24 @@ const SpeciesListView = (props) => {
 
 const styles = StyleSheet.create({
   fondo: {
-    width: "100%",
-    height: "100%",
+    flex: 1,
   },
 
   topSection: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginVertical: 18
+    marginVertical: 18,
+    marginBottom: 20,
   },
 
   iconoLista: {
     color: 'white',
     marginLeft: 16
+  },
+
+  flatList: {
+
   }
 });
 
