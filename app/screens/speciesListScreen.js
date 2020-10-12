@@ -1,18 +1,30 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 
-import ListViewStyleNavigator from "../navigation/ListViewStyleNavigator";
-import data from '../data/dummySpecies';
+import SearchSpeciesBar from "../components/searchSpeciesBar";
+import SpeciesGridSection from "../components/speciesGridSection";
+
 
 const SpeciesListScreen = (props) => {
 
-  const handleItemPress = (specie) => {
-    console.log("pressed, ", specie);
-  };
-
-  return (
-    <ListViewStyleNavigator onPress={handleItemPress} data={data}/>
-  );
+  const handleItemSelect = (item) => {
+    props.navigation.navigate('VistaDetalleEspecie', item);
+  }
+    return (
+        <View style={{ width: "100%", height: "100%" }}>
+          <LinearGradient
+            colors={["#001709", "#0E4926"]}
+            locations={[0.5, 1]}
+            style={styles.fondo}
+          >
+            <View style={styles.searchBar}>
+              <SearchSpeciesBar />
+            </View>
+              <SpeciesGridSection onPress={handleItemSelect}/>
+          </LinearGradient>
+        </View>
+    )
 };
 
 const styles = StyleSheet.create({
@@ -20,19 +32,18 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 
-  topSection: {
-    flexDirection: 'row',
+  searchBar: {
     justifyContent: 'center',
     alignItems: 'center',
     marginVertical: 18,
     marginBottom: 20,
   },
 
-  iconoLista: {
+  icon: {
     color: 'white',
-    marginLeft: 16
-  },
-
+    marginTop: 15
+  }
 });
+
 
 export default SpeciesListScreen;

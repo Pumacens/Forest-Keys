@@ -9,26 +9,29 @@ import {
 
 import colors from "../config/colors";
 
-const SpeciesListItem = (props) => {
-  return (
-    <TouchableHighlight
-      onPress={() => props.onPress(props.itemData)}
-      underlayColor={colors.itemTapColor}
-    >
-      <View style={styles.listItem}>
-        <Image
-          style={styles.image}
-          source={{
-            uri: `https://picsum.photos/id/${props.itemData.ID + 10}/60/60`,
-          }}
-        />
-        <View styles={styles.listText}>
-          <Text style={styles.title}>{props.itemData.name}</Text>
-          <Text style={styles.subTitle}>{props.itemData.nombreComun}</Text>
+class SpeciesListItem extends React.PureComponent {
+
+  render(){
+    return (
+      <TouchableHighlight
+        onPress={() => this.props.onPress(this.props.itemData)}
+        underlayColor={colors.itemTapColor}
+      >
+        <View style={styles.listItem}>
+          <Image
+            style={styles.image}
+            source={{
+              uri: `https://picsum.photos/id/${this.props.itemData.ID + 10}/60/60`,
+            }}
+          />
+          <View styles={styles.listText}>
+            <Text style={styles.title}>{this.props.itemData.name}</Text>
+            <Text style={styles.subTitle}>{this.props.itemData.nombreComun}</Text>
+          </View>
         </View>
-      </View>
-    </TouchableHighlight>
-  );
+      </TouchableHighlight>
+    );
+  }
 };
 
 const styles = StyleSheet.create({
@@ -38,7 +41,7 @@ const styles = StyleSheet.create({
     margin: 10,
     backgroundColor: colors.superiorBandGreen,
     borderRadius: 5,
-  },
+  }, 
 
   image: {
     height: 75,

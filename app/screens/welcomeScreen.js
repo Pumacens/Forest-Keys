@@ -6,18 +6,31 @@ import {
   View,
   ImageBackground,
   TouchableNativeFeedback,
-  Dimensions,
 } from "react-native";
 import { useFonts } from "expo-font";
 import { LinearGradient } from "expo-linear-gradient";
+import * as SQLite from 'expo-sqlite';
 
 import TopMenu from "../components/topMenu";
 import KeysDropdown from "../components/keysDropdown";
-import data from '../config/deviceData'
+import data from "../config/deviceData";
 
-function WelcomeScreen() {
-  const handleButtonPress = () => {
-    console.log("boton oprimido");
+const db = SQLite.openDatabase('chinook.db');
+
+function WelcomeScreen(props) {
+
+  const handleChangeToKeyScreen = () => {
+    db.transaction(tx => {
+      tx.executeSql(
+        `SELECT * FROM genres;`,
+        [],
+        (result) => console.log(result)
+      );
+    });
+  };
+
+  const handleChangeToSpeciesScreen = (props) => {
+    props.navigation.navigate("SpeciesListScreen");
   };
 
   let customFont = "Roboto";
@@ -32,9 +45,9 @@ function WelcomeScreen() {
 
   return (
     <ImageBackground
-        style={styles.portada}
-        source={require("../assets/portada2-op.png")}
-      >
+      style={styles.portada}
+      source={require("../assets/portada2-op.png")}
+    >
       <LinearGradient
         colors={["rgba(0,0,0,0.85)", "rgba(0,0,0,0.20)", "rgba(0,0,0,1)"]}
         locations={[0.5, 0.8, 1]}
@@ -58,14 +71,17 @@ function WelcomeScreen() {
 
         <View style={styles.seccionPortadaBotones}>
           <TouchableNativeFeedback
-            onPress={handleButtonPress}
+            onPress={handleChangeToKeyScreen}
             title="IDENTIFICAR PLANTA"
           >
             <View style={styles.botonPortada}>
               <Text style={styles.textoBoton}>IDENTIFICAR PLANTA</Text>
             </View>
           </TouchableNativeFeedback>
-          <TouchableNativeFeedback title="LISTA DE ESPECIES DE LA CLAVE">
+          <TouchableNativeFeedback
+            title="LISTA DE ESPECIES DE LA CLAVE"
+            onPress={() => handleChangeToSpeciesScreen(props)}
+          >
             <View style={styles.botonPortada}>
               <Text style={styles.textoBoton}>
                 LISTA DE ESPECIES DE LA CLAVE
@@ -93,7 +109,6 @@ function WelcomeScreen() {
 const styles = StyleSheet.create({
   portada: {
     width: data.width,
-    zIndex: 99
   },
 
   botonMenuSuperior: {
@@ -116,7 +131,7 @@ const styles = StyleSheet.create({
   titulo: {
     fontSize: 54,
     color: "white",
-    marginBottom: -12
+    marginBottom: -12,
   },
 
   subTitulo: {
@@ -143,7 +158,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-around",
     paddingVertical: 35,
-    marginTop: 5
+    marginTop: 5,
   },
 
   botonPortada: {
@@ -162,7 +177,7 @@ const styles = StyleSheet.create({
     color: "white",
     bottom: 11,
     fontFamily: "Roboto",
-    fontWeight: "bold"
+    fontWeight: "bold",
   },
 
   iconImportarClave: {
