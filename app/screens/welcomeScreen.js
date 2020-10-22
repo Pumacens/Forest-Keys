@@ -27,6 +27,7 @@ class WelcomeScreen extends Component {
     super(props);
     this.state = {};
     this.state.isReady = false;
+    
   }
 
   loadAssetsAsync = async () => {
