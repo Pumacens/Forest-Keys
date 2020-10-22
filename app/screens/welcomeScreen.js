@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import { FontAwesome5 } from "@expo/vector-icons";
 import {
   StyleSheet,
@@ -7,9 +7,13 @@ import {
   ImageBackground,
   TouchableNativeFeedback,
 } from "react-native";
-import { useFonts } from "expo-font";
+import { loadAsync } from "expo-font";
 import { LinearGradient } from "expo-linear-gradient";
 import * as SQLite from 'expo-sqlite';
+import * as FileSystem from 'expo-file-system';
+import * as MediaLibrary from 'expo-media-library';
+import * as Permissions from 'expo-permissions';
+import { AppLoading } from 'expo';
 
 import TopMenu from "../components/topMenu";
 import KeysDropdown from "../components/keysDropdown";
@@ -17,36 +21,64 @@ import data from "../config/deviceData";
 
 const db = SQLite.openDatabase('chinook.db');
 
-function WelcomeScreen(props) {
+class WelcomeScreen extends Component {
 
-  const handleChangeToKeyScreen = () => {
-    db.transaction(tx => {
-      tx.executeSql(
-        `SELECT * FROM genres;`,
-        [],
-        (result) => console.log(result)
-      );
-    });
-  };
-
-  const handleChangeToSpeciesScreen = (props) => {
-    props.navigation.navigate("SpeciesListScreen");
-  };
-
-  let customFont = "Roboto";
-
-  let [fontsLoaded] = useFonts({
-    SedanSC: require("../assets/fonts/SedanSC-Regular.ttf"),
-  });
-
-  if (fontsLoaded) {
-    customFont = "SedanSC";
+  constructor(props){
+    super(props);
+    this.state = {};
+    this.state.isReady = false;
   }
 
-  return (
+  loadAssetsAsync = async () => {
+    // Load a font `Montserrat` from a static resource
+    this.state.backgroundImage = require("../assets/portada2-op.png"),
+
+    await loadAsync({
+      SedanSC: require('../assets/fonts/SedanSC-Regular.ttf'),
+    }) 
+  }
+
+  handleChangeToKeyScreen = async () => {
+    // db.transaction(tx => {
+    //   tx.executeSql(
+    //     `SELECT * FROM genres;`,
+    //     [],
+    //     (result) => console.log(result)
+    //   );
+    // });
+
+    let dir = await FileSystem.readDirectoryAsync(FileSystem.documentDirectory + 'SQLite');
+    let docsList = [];
+
+    dir.forEach((val) => {
+      docsList.push(FileSystem.documentDirectory + 'SQLite/' + val);
+    });
+
+    console.log(docsList);
+  };
+  
+
+  handleChangeToSpeciesScreen = () => {
+    this.props.navigation.navigate("SpeciesListScreen");
+  };
+
+
+  render(){ 
+
+    if (!this.state.isReady) {
+      return (
+        <AppLoading
+          startAsync={this.loadAssetsAsync}
+          onFinish={() => this.setState({ isReady: true })}
+          onError={console.warn}
+        />
+      );
+    }
+    
+    return (
     <ImageBackground
       style={styles.portada}
-      source={require("../assets/portada2-op.png")}
+      source={this.state.backgroundImage}
     >
       <LinearGradient
         colors={["rgba(0,0,0,0.85)", "rgba(0,0,0,0.20)", "rgba(0,0,0,1)"]}
@@ -59,7 +91,7 @@ function WelcomeScreen(props) {
               styles.texto,
               styles.titulo,
               {
-                fontFamily: customFont,
+                fontFamily: 'SedanSC',
               },
             ]}
           >
@@ -71,7 +103,7 @@ function WelcomeScreen(props) {
 
         <View style={styles.seccionPortadaBotones}>
           <TouchableNativeFeedback
-            onPress={handleChangeToKeyScreen}
+            onPress={this.handleChangeToKeyScreen}
             title="IDENTIFICAR PLANTA"
           >
             <View style={styles.botonPortada}>
@@ -80,7 +112,7 @@ function WelcomeScreen(props) {
           </TouchableNativeFeedback>
           <TouchableNativeFeedback
             title="LISTA DE ESPECIES DE LA CLAVE"
-            onPress={() => handleChangeToSpeciesScreen(props)}
+            onPress={() => this.handleChangeToSpeciesScreen(this.props)}
           >
             <View style={styles.botonPortada}>
               <Text style={styles.textoBoton}>
@@ -103,7 +135,7 @@ function WelcomeScreen(props) {
         </View>
       </LinearGradient>
     </ImageBackground>
-  );
+  )};
 }
 
 const styles = StyleSheet.create({
