@@ -14,41 +14,51 @@ import colors from "./app/config/colors";
 import WelcomeScreen from "./app/screens/welcomeScreen";
 import SpeciesListScreen from "./app/screens/speciesListScreen";
 import { navigationRef } from "./app/config/RootNavigation";
-import getData from "./app/data/realData";
-import {dbData} from "./app/config/dbData"
+import {
+  getSpeciesData,
+  getSpeciesKeyData,
+  getDb,
+  createDbFolder,
+} from "./app/data/speciesData";
+import { dbData } from "./app/config/dbData";
 import SpeciesDataContext from "./app/context/SpeciesDataContext";
 import SpecieDetailScreen from "./app/screens/specieDetailScreen";
+import SpecieKeyScreen from "./app/screens/speciesKeyScreen";
 
 const Stack = createStackNavigator();
 
 const StackNavigator = (props) => {
-
-    return (
-      <Stack.Navigator initialRouteName="WelcomeScreen">
-        <Stack.Screen
-          name="WelcomeScreen"
-          component={WelcomeScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="SpeciesListScreen"
-          component={SpeciesListScreen}
-          options={{
-            title: "Especies",
-            headerStyle: {
-              backgroundColor: colors.superiorBandGreen,
-            },
-            headerTitleStyle: {
-              color: 'white',
-              fontSize: 23
-            },
-            headerTitleAlign: 'center',
-            headerTintColor: 'white'
-          }}
-        />
-        <Stack.Screen name="VistaDetalleEspecie" component={SpecieDetailScreen} />
-      </Stack.Navigator>
-    );
+  return (
+    <Stack.Navigator initialRouteName="VistaClaveEspecies">
+      <Stack.Screen
+        name="WelcomeScreen"
+        component={WelcomeScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="SpeciesListScreen"
+        component={SpeciesListScreen}
+        options={{
+          title: "Especies",
+          headerStyle: {
+            backgroundColor: colors.superiorBandGreen,
+          },
+          headerTitleStyle: {
+            color: "white",
+            fontSize: 23,
+          },
+          headerTitleAlign: "center",
+          headerTintColor: "white",
+        }}
+      />
+      <Stack.Screen name="VistaDetalleEspecie" component={SpecieDetailScreen} />
+      <Stack.Screen
+        name="VistaClaveEspecies"
+        component={SpecieKeyScreen}
+        options={{ title: "Clave" }}
+      />
+    </Stack.Navigator>
+  );
 };
 
 export default function App() {
@@ -57,50 +67,26 @@ export default function App() {
 
   loadAssetsAsync = async () => {
     // Load a font SedanSC and Background image
-    console.log("loading assets------------------------------------------------------------");
     changeBG(require("./app/assets/portada2-op.png"));
 
     await loadAsync({
       SedanSC: require("./app/assets/fonts/SedanSC-Regular.ttf"),
     });
-
-    console.log("assets loaded------------------------------------------------------------");
   };
 
-
   const [speciesData, changeSpeciesData] = useState([]);
+  const [speciesKeyData, changeSpeciesKeyData] = useState([]);
 
   useEffect(() => {
-    // getData().then((data) => {
-    //   changeSpeciesData(data);
-    //   console.log('################# datos cargados ######################');
-    //   console.log(data);
-    // }).catch((ex)=> {
-    //   console.log('DATOS NO SE PUDIERON CARGAR');
+    actualizeData = async () => {
+      await createDbFolder();
+      await getDb();
+      changeSpeciesData(await getSpeciesData());
+      changeSpeciesKeyData(await getSpeciesKeyData());
+    };
 
-    // })
-      actualizeData = async () => {
-        if (!(await FileSystem.getInfoAsync(dbData.dbDir)).exists) {
-          const dbTest = SQLite.openDatabase("dummy.db");
-          // Create dummy db to make SQlite folder
-          try {
-            dbTest.transaction((tx) => tx.executeSql(""));
-
-            // console.log("Se creó directorio de base de datos: ", dbTest);
-      
-          } catch (e) {
-            console.log("error while executing SQL in dummy DB: ", e);
-            
-          } 
-    
-          Console.log('Directorio de db creado');
-        }
-
-        changeSpeciesData(await getData());
-      }
-
-      actualizeData();
-  },[])
+    actualizeData();
+  }, []);
 
   if (!isReady) {
     return (
@@ -111,7 +97,6 @@ export default function App() {
       />
     );
   } else {
-
     return (
       <>
         <StatusBar
@@ -119,10 +104,15 @@ export default function App() {
           backgroundColor={colors.statusBarGreen}
         />
         <SpeciesDataContext.Provider
-          value={{ data: speciesData, changeData: changeSpeciesData, backgroundImage: backgroundImage}}
+          value={{
+            data: speciesData,
+            keyData: speciesKeyData,
+            changeData: changeSpeciesData,
+            backgroundImage: backgroundImage,
+          }}
         >
           <NavigationContainer ref={navigationRef}>
-            <StackNavigator/>
+            <StackNavigator />
           </NavigationContainer>
         </SpeciesDataContext.Provider>
       </>
