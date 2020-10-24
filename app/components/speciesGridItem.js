@@ -11,6 +11,12 @@ import colors from "../config/colors";
 import data from '../config/deviceData'
 
 const SpeciesGridItem = (props) => {
+
+  const convertImage = (blob) => {
+    // console.log(blob);
+    // return blob
+  }
+
   return (
     <TouchableHighlight
       onPress={() => props.onPress(props.itemData)}
@@ -18,13 +24,14 @@ const SpeciesGridItem = (props) => {
     >
       <View style={styles.listItem}>
         <View style={styles.titleBar}>
-          <Text style={styles.title}>{props.itemData.name}</Text>
-          <Text style={styles.subTitle}>{props.itemData.nombreComun}</Text>
+          <Text style={styles.title}>{props.itemData.nombrecientifico}</Text>
+          <Text style={styles.subTitle}>{props.itemData.familia}</Text>
         </View>
         <Image
           style={styles.image}
           source={{
-            uri: `https://picsum.photos/id/${props.itemData.ID + 10}/200/200`,
+            // uri: `https://picsum.photos/id/${props.itemData.id + 10}/200/200`,
+            uri: props.itemData.imagen[0],
           }}
         />
       </View>
