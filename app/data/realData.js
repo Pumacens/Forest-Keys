@@ -37,12 +37,6 @@ const addImagesToParsedData = (imagesData, basicData, resolve) => {
             imagen: imagesData.filter(e => {
                 return e.ID === i.id
             }).map( img => {
-                // const fileReaderInstance = new FileReader();
-                // fileReaderInstance.readAsDataURL(new Blob([img.Imagen], {type : 'image/jpeg'})); 
-                // fileReaderInstance.onload = () => {
-                //     return fileReaderInstance.result;                
-                // }
-                // return new Blob([img.Imagen], {type : 'image/jpeg'})
                 return img.Imagen
             })
         }

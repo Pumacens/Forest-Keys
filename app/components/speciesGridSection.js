@@ -17,8 +17,9 @@ const SpeciesGridSection = (props) => {
             return(
             <FlatList
               data={context.data}
-              keyExtractor={(item) => { item.id.toString() }}
+              keyExtractor={(item) => { return item.id.toString() }}
               renderItem={({ item }) => {
+                // console.log(item.id.toString());
                 return <SpeciesGridItem key={item.id} itemData={item} onPress={props.onPress}/>;
               }}
               persistentScrollbar={true}
