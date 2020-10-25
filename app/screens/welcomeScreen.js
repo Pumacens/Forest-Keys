@@ -19,7 +19,8 @@ import SpeciesDataContext from "../context/SpeciesDataContext";
 class WelcomeScreen extends Component {
 
   handleChangeToKeyScreen = () => {
-     
+
+    this.props.navigation.navigate('SpeciesKeyScreen');
   };
 
   handleChangeToSpeciesScreen = () => {

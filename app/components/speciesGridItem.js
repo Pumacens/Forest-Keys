@@ -12,11 +12,6 @@ import data from '../config/deviceData'
 
 const SpeciesGridItem = (props) => {
 
-  const convertImage = (blob) => {
-    // console.log(blob);
-    // return blob
-  }
-
   return (
     <TouchableHighlight
       onPress={() => props.onPress(props.itemData)}

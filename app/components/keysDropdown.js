@@ -10,7 +10,7 @@ const KeysDropdown = (props) => {
         mode="dialog"
         style={{ height: 50, width: "100%", color: "white" }}
       >
-        <Picker.Item label="Lista de claves..." value="..." />
+        <Picker.Item label="Clave de prueba 1..." value="..." />
         <Picker.Item label="a" value="..." />
         <Picker.Item label="b" value="..." />
         <Picker.Item label="c" value="..." />
